@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Agri Trading Zone -- Make A Bid{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm"></div>
+        <div class="col-md-4 vertical-middle col-sm-12">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <p><h1>Make A Bid</h1></p>
+            <form action="{% url 'make-bid' product.id %}" method="POST" class="form">
+            {% csrf_token %}
+            <p>
+                {{ product.crop}}, {{ product.quantity }} at ${{ product.price }} per {{ product.metric }}
+            </p>
+                <br>
+            <p>
+                Buyer: {{ user }}
+            </p>
+                <br>
+                <select name="package" class="form-control" id="package">
+                    {% for package in packages %}
+                    <option value="{{ package.0 }}">{{ package.1 }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <input type="number" class="form-control" name="weight" id="weight" placeholder="weight per package" />
+                <br>
+            <input type="number" name="price" id="price" placeholder="Your bid price" class="form-control" required>
+                <br>
+            <input type="submit" class="btn btn-primary" value="Make Bid">
+        </form>
+        </div>
+
+        <div class="col-md-4 col-sm"></div>
+    </div>
+
+</div>
+{% endblock %}

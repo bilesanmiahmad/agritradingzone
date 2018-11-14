@@ -1,0 +1,239 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Agri Trading Zone</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+
+
+    <!-- Plugin CSS -->
+    <link href="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Custom css for this template -->
+    <link href="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/css/creative.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Agri Trading Zone</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                <form action="{% url 'logout' %}" method="POST" id="logout">
+                  {% csrf_token %}
+                  <input type="hidden">
+              </form>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{% url 'signup' %}">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="masthead text-center text-white d-flex" style="background-image: url('https://s3.eu-west-2.amazonaws.com/agrizone/static/home/img/cashew.jpg');">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase">
+              <strong>You can get cash grains and nuts at the click of a button.</strong>
+            </h1>
+            <hr>
+          </div>
+          <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5">At Agri Trading Zone, you can find the best cash crops at the best prices and quality because we also want you to make the best profits in your business</p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'signup' %}">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="bg-primary" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading text-white">We've got what you need!</h2>
+            <hr class="light my-4">
+            <p class="text-faded mb-4">From nuts to grains and other cash crops, you name it, we can get it for you. We can also help you market your goods if you are a seller. We are here for you.</p>
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="{% url 'signup' %}">Get Started!</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="" id="services" style="background-image: url('https://s3.eu-west-2.amazonaws.com/agrizone/static/home/img/field4.jpeg');">
+      <div class="container">
+        <div class="row bg-white pt-3">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">At Your Service</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row bg-white pb-3">
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>
+              <h3 class="mb-3">Easy To Use</h3>
+              <p class="text-muted mb-0">Our platform is easy to use so you can get maximum results in little time.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fas fa-4x fa-paper-plane text-primary mb-3 sr-icon-2"></i>
+              <h3 class="mb-3">Commitment</h3>
+              <p class="text-muted mb-0">We take our clients seriously and we follow up on your requests with full commitment</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fas fa-4x fa-code text-primary mb-3 sr-icon-3"></i>
+              <h3 class="mb-3">Up to Date</h3>
+              <p class="text-muted mb-0">Our products list are always updated to keep you informed of our latest products.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fas fa-4x fa-heart text-primary mb-3 sr-icon-4"></i>
+              <h3 class="mb-3">Market Your Goods</h3>
+              <p class="text-muted mb-0">You can reach out to us to market your goods for you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-3 bg-primary" id="portfolio">
+      <div class="container-fluid p-0">
+        <div class="row carousel">
+          <div class="col-lg-4 col-sm-6">
+            <div class="portfolio-box card mb-4" style="width: 18rem;">
+              <img class="card-img-top" src="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/img/sesam.jpg" height="240px" alt="sesame">
+              <div class="card-body">
+                <h5 class="card-title">Sesame Seeds</h5>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="portfolio-box card" style="width: 18rem;">
+              <img class="card-img-top" src="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/img/peanut.jpg" height="240px" alt="peanut">
+              <div class="card-body">
+                <h5 class="card-title">Peanuts</h5>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="portfolio-box card" style="width: 18rem;">
+              <img class="card-img-top" src="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/img/arabic.jpg" height="240px" alt="Arabic gum">
+              <div class="card-body">
+                <h5 class="card-title">Arabic Gum</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="portfolio-box card" style="width: 18rem;">
+              <img class="card-img-top" src="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/img/cashewnut.jpg" height="240px" alt="Cashew nuts">
+              <div class="card-body">
+                <h5 class="card-title">Cashew nuts</h5>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="portfolio-box card" style="width: 18rem;">
+              <img class="card-img-top" src="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/img/honey.jpg" height="240px" alt="Honey">
+              <div class="card-body">
+                <h5 class="card-title">Honey</h5>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading">Let's Get In Touch!</h2>
+            <hr class="my-4">
+            <p class="mb-5">Ready to business with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 ml-auto text-center">
+            <i class="fas fa-phone fa-3x mb-3 sr-contact-1"></i>
+            <p>123-456-6789</p>
+          </div>
+          <div class="col-lg-4 mr-auto text-center">
+            <i class="fas fa-envelope fa-3x mb-3 sr-contact-2"></i>
+            <p>
+              <a href="mailto:your-hello@agritradingzone.com">hello@agritradingzone.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/vendor/jquery/jquery.min.js"></script>
+    <script src="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="https://s3.eu-west-2.amazonaws.com/agrizone/static/home/js/creative.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('.carousel').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+      });
+    });
+  </script>
+
+  </body>
+
+</html>

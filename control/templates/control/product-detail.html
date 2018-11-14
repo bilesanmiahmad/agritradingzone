@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title%}Agri Trading Zone -- Admin -- Product Detail{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+{% load humanize %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm"></div>
+        <div class="col-md-4 vertical-middle col-sm-12">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <p><h1>Product Detail</h1></p>
+            {% if product %}
+                <p>{{ product.crop }}</p>
+                <p>{{ product.details }}</p>
+                <p>{{ product.created | naturalday }}</p>
+                <p><img src="{{ product.image.url }}" alt="product image" width="270px"></p>
+            <a href="{% url 'make-bid' product.id %}"><button class="btn btn-success">Bid on Product</button></a>
+            {% if request.user.is_rahman %}
+            <span><a href="{% url 'close-product' product.id %}" class="btn btn-danger"> Close Product</a></span>
+            {% endif %}
+            {% endif %}
+        </div>
+
+        <div class="col-md-4 col-sm"></div>
+    </div>
+
+</div>
+
+
+{% endblock %}

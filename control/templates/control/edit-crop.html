@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title%}Agri Trading Zone -- Admin -- Add Crop{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-sm"></div>
+        <div class="col-md-8 vertical-middle col-sm-12">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <p><h1>Edit Crop</h1></p>
+            <form action="{% url 'edit-crop' crop.id %}" method="POST" class="form">
+            {% csrf_token %}
+
+            <input type="text" name="name" id="name" value="{{ crop.name }}" placeholder="Crop Name" class="form-control" required autofocus>
+                <br>
+
+            <input type="submit" class="btn btn-primary" value="Edit Crop">
+        </form>
+        </div>
+
+        <div class="col-md-2 col-sm"></div>
+    </div>
+
+</div>
+
+
+{% endblock %}

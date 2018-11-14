@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title%}Agri Trading Zone -- Bids{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+{% load humanize %}
+
+{% if bid %}
+<h2 class="text-center">Bid Number -- {{ bid.id }}</h2>
+    <div class="row my-5">
+
+    <div class="card m-3" style="width: 18rem;">
+        <!--<img class="card-img-top" src="{{ product.image.url }}" height="180px" width="180px" alt="product image">-->
+        <div class="card-body">
+            <h5 class="card-title">Crop : {{ bid.product.crop }}</h5>
+            <p class="card-text">Package : {{ bid.package }}</p>
+            <p class="card-text">Weight : {{ bid.weight }}</p>
+            <p class="card-text">Your Bid Price : {{ bid.price }}</p>
+            <p class="card-text">Date : {{ bid.created | naturalday }}</p>
+            <p class="card-text">Status : {{ bid.is_accepted }}</p>
+            {% if request.user.is_rahman %}
+            <p class="card-text">Client : {{ bid.client.get_full_name }}</p>
+            <div>
+                <span><a href="{% url 'accept-bid' bid.id %}" class="btn btn-success">Accept Bid</a></span>
+                <span><a href="{% url 'deny-bid' bid.id %}" class="btn btn-danger">Deny Bid</a></span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+        </div>
+    {%endif%}
+
+{% endblock %}
+

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title%}Agri Trading Zone -- Products{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+
+<h2 class="text-center">Our Current Products</h2>
+{% if request.user.is_rahman %}
+<div class="text-right">
+    <span><a class="btn btn-primary" href="{% url 'add-product' %}">Add Product</a></span>
+    </div>
+{% endif %}
+<ul>
+{% if products %}
+    <div class="row my-5">
+{% for product in products %}
+
+    <div class="card m-3" style="width: 18rem;">
+        <img class="card-img-top" src="{{ product.image.url }}" height="180px" width="180px" alt="product image">
+        <div class="card-body">
+            <h5 class="card-title">{{ product.crop }}</h5>
+            <p class="card-text">{{ product.details }}</p>
+            <a href="{% url 'prod-details' product.id %}" class="btn btn-primary">See Details</a>
+        </div>
+    </div>
+    {% endfor %}
+        </div>
+    {%endif%}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title%}Agri Trading Zone -- Add Product{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+<link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+<div class="container">
+    <div class="text-right m-2"><a href="{% url 'add-crop' %}" class="btn btn-primary">Add Crop</a></div>
+    <div class="row">
+        <div class="col-md-4 col-sm"></div>
+        <div class="col-md-4 vertical-middle col-sm-12">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <p><h1>Add Product</h1></p>
+            <form action="{% url 'add-product' %}" method="POST" class="form" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <select type="text" name="crop" id="crop" placeholder="Crop Name" class="form-control" required autofocus>
+                {% for crop in crops %}
+                    <option id="" value="{{ crop.id }}">{{ crop }}</option>
+                {% endfor %}
+            </select>
+                <br>
+            <input type="number" name="qty" id="qty" placeholder="Quantity" class="form-control" required>
+                <br>
+            <input type="file" name="img" id="img" placeholder="Image" class="form-control">
+                <br>
+                <input name="proddate" id="proddate" placeholder="production date" />
+                <br>
+                <input name="expdate" id="expdate" placeholder="expiry date">
+                <br>
+                <textarea cols="15" rows="10" name="details" id="details" placeholder="Product details" class="form-control" required></textarea>
+                <br>
+            <input type="number" name="price" id="price" placeholder="Price" class="form-control" required>
+                <br>
+                <select type="text" name="metric" id="metric" placeholder="Metric" class="form-control" required>
+                    <option value="KG">Kilogram</option>
+                    <option value="MT">Metric Tonnes</option>
+                    <option value="LBS">Pounds</option>
+                </select>
+                <br>
+            <input type="submit" class="btn btn-primary" value="Add Product">
+        </form>
+        </div>
+
+        <div class="col-md-4 col-sm"></div>
+    </div>
+
+</div>
+
+
+{% endblock %}
