@@ -49,7 +49,7 @@ def add_bid(request, product_id=None):
             bid.weight = request.POST['weight']
             bid.price = request.POST['price']
             bid.save()
-            mail.send_email()
+            mail.send_formatted_bid_email(bid)
             return redirect('products')
     else:
         return render(
