@@ -56,7 +56,7 @@ class Product(models.Model):
     )
     metric = models.CharField(
         _('metric'),
-        max_length=5,
+        max_length=10,
         choices=c.METRIC,
         default=c.KILOS
     )
@@ -172,6 +172,41 @@ class Profile(models.Model):
     updated = models.DateTimeField(
         _('date updated'),
         auto_now=True
+    )
+
+
+class Sale(models.Model):
+    crop = models.CharField(
+        _('Crop to sell'),
+        max_length=30
+    )
+    quantity = models.DecimalField(
+        _('Quantity'),
+        max_digits=10,
+        decimal_places=2
+    )
+    metric = models.CharField(
+        _('Metric'),
+        choices=c.METRIC,
+        max_length=10
+    )
+    details = models.TextField(
+        _('Details'),
+        blank=True
+    )
+    price = models.DecimalField(
+        _('Price per metric'),
+        max_digits=10,
+        decimal_places=2
+    )
+    seller = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='sales'
+    )
+    created = models.DateTimeField(
+        _('Date created'),
+        auto_now_add=True
     )
 
 

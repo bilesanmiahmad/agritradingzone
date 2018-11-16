@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from accounts.models import User
 from accounts import constants as ct
+from tradingzone.utils import mail
 
 # Create your views here.
 
@@ -12,14 +13,27 @@ def login(request):
             email=request.POST['email'],
             password=request.POST['password'])
         if user is not None:
-            auth.login(request, user)
-            return redirect('products')
+            if user.is_verified:
+                auth.login(request, user)
+                return redirect('products')
+            else:
+                return render(
+                    request,
+                    'accounts/login.html',
+                    {'error': 'Please verify your account'})
         else:
             return render(
                 request, 'accounts/login.html',
                 {'error': 'Invalid Credentials'})
     else:
         return render(request, 'accounts/login.html')
+
+
+def verify(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    if user:
+        user.is_verified = True
+        return redirect('login')
 
 
 def signup(request):
@@ -50,6 +64,7 @@ def signup(request):
                     password=password
                 )
                 auth.login(request, user)
+                mail.send_formatted_email()
                 return redirect('products')
         else:
             return render(request, 'accounts/signup.html', {'error': 'Passwords don\'t match.'})

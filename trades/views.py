@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from trades import models as mt
 from trades import constants as ct
+from tradingzone.utils import mail
 
 
 # Create your views here.
@@ -27,7 +28,7 @@ def add_product(request):
             context={'product': products})
 
 
-def close_product(request, product_id):
+def close_product(request, product_id=None):
     if request.user.is_rahman:
         product = mt.Product.objects.get(id=product_id)
         product.is_closed = True
@@ -48,6 +49,7 @@ def add_bid(request, product_id=None):
             bid.weight = request.POST['weight']
             bid.price = request.POST['price']
             bid.save()
+            mail.send_email()
             return redirect('products')
     else:
         return render(
@@ -98,5 +100,51 @@ def all_bids(request):
     if request.user.is_rahman:
         bids = mt.Bid.objects.all()
         return render(request, 'trades/bids.html', {'bids': bids})
+    else:
+        redirect('products')
+
+
+@login_required()
+def add_sale(request):
+    if request.method == 'POST':
+        if (request.POST['crop'] and request.POST['qty'] and
+            request.POST['metric'] and request.POST['details'] and
+            request.POST['price']):
+            sale = mt.Sale()
+            sale.crop = request.POST['crop']
+            sale.seller = request.user
+            sale.quantity = request.POST['qty']
+            sale.metric = request.POST['metric']
+            sale.details = request.POST['details']
+            sale.price = request.POST['price']
+            sale.save()
+            mail.send_email()
+            return redirect('sales')
+    else:
+        return render(
+            request,
+            'trades/add-sale.html')
+
+
+@login_required()
+def get_sale(request, sale_id):
+    sale = mt.Sale.objects.get(id=sale_id)
+    return render(request, 'trades/sale-item.html', {'sale': sale})
+
+
+@login_required()
+def get_sales(request):
+    user = request.user
+    if user.is_rahman:
+        return redirect('all-sales')
+    sales = mt.Sale.objects.filter(seller=user)
+    return render(request, 'trades/sales.html', {'sales': sales})
+
+
+@login_required()
+def all_sales(request):
+    if request.user.is_rahman:
+        sales = mt.Sale.objects.all()
+        return render(request, 'trades/sales.html', {'sales': sales})
     else:
         redirect('products')

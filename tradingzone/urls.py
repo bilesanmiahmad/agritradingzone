@@ -27,5 +27,4 @@ urlpatterns = [
     path('products/', include('trades.urls')),
     path('controls/', include('control.urls')),
     path('', hv.index, name='home'),
-    # path('accounts/login', av.login, name='login')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

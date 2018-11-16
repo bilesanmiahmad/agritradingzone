@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title%}Agri Trading Zone -- Your Products{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+{% load humanize %}
+
+<h2 class="text-center">Your Posted Products</h2>
+
+<ul>
+{% if sales %}
+    <div class="row my-5">
+{% for sale in sales %}
+
+    <div class="card m-3" style="width: 18rem;">
+        <!--<img class="card-img-top" src="{{ product.image.url }}" height="180px" width="180px" alt="product image">-->
+        <div class="card-body">
+            <h5 class="card-title">Crop : {{ sale.crop }}</h5>
+            <p class="card-text">Quantity : {{ sale.quantity }}</p>
+            <p class="card-text">Metric : {{ sale.metric }}</p>
+            <p class="card-text">Price : {{ sale.price }}</p>
+            <p class="card-text">Date : {{ sale.created | naturalday }}</p>
+            <a href="{% url 'sale-item' sale.id %}" class="btn btn-primary">See Details</a>
+        </div>
+    </div>
+    {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+                    You have not posted any products yet. You can post a new product <a href="{% url 'add-sale' %}">here</a>
+                </div>
+    {%endif%}
+</ul>
+
+{% endblock %}

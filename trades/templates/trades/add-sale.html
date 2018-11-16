@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title%}Agri Trading Zone -- Sell Product{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+<link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-sm"></div>
+        <div class="col-md-8 vertical-middle col-sm-12">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <p><h1>Add Your Product Here</h1></p>
+            <form action="{% url 'add-sale' %}" method="POST" class="form" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <input type="text" name="crop" id="crop" placeholder="Crop Name" class="form-control" required autofocus>
+
+                <br>
+            <input type="number" name="qty" id="qty" placeholder="Quantity" class="form-control" required>
+                <br>
+                <select type="text" name="metric" id="metric" placeholder="Metric" class="form-control" required>
+                    <option value="KG">Kilogram</option>
+                    <option value="MT">Metric Tonnes</option>
+                    <option value="LBS">Pounds</option>
+                </select>
+                <br>
+                <textarea cols="15" rows="10" name="details" id="details" placeholder="Product details" class="form-control" required></textarea>
+                <br>
+            <input type="number" name="price" id="price" placeholder="Price per metric" class="form-control" required>
+                <br>
+            <input type="submit" class="btn btn-primary" value="Sell Your Product">
+        </form>
+        </div>
+
+        <div class="col-md-2 col-sm"></div>
+    </div>
+
+</div>
+
+
+{% endblock %}

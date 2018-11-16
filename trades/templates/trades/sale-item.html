@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title%}Agri Trading Zone -- Your Product{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+{% load humanize %}
+
+{% if sale %}
+<h2 class="text-center">Your Product Detail</h2>
+    <div class="row my-5">
+
+    <div class="card m-3" style="width: 18rem;">
+        <!--<img class="card-img-top" src="{{ product.image.url }}" height="180px" width="180px" alt="product image">-->
+        <div class="card-body">
+            <h5 class="card-title">Crop : {{ sale.crop }}</h5>
+            <p class="card-text">Quantity : {{ sale.quantity }}</p>
+            <p class="card-text">Metric : {{ sale.metric }}</p>
+            <p class="card-text">Price : {{ sale.price }}</p>
+            <p class="card-text">Details: {{ sale.details }}</p>
+            <p class="card-text">Date : {{ sale.created | naturalday }}</p>
+            {% if request.user.is_rahman %}
+            <p class="card-text">Seller : {{ sale.seller.get_full_name }}</p>
+            {% endif %}
+        </div>
+    </div>
+        </div>
+    {%endif%}
+
+{% endblock %}
+

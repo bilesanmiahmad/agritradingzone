@@ -155,16 +155,23 @@ STATICFILES_DIRS = [
     os.path.join(str(BASE_DIR), 'tradingzone/static'),
 ]
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-# STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+
 STATIC_ROOT = 'staticfiles'
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'tradingzone.storage_backends.MediaStorage'
 
 MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, 'media')
-# MEDIA_ROOT = '/media/'
-MEDIA_ROOT = os.path.join(str(BASE_DIR), 'media')
+MEDIA_ROOT = '/media/'
+# MEDIA_ROOT = os.path.join(str(BASE_DIR), 'media')
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+EMAIL_HOST = 'smtp.zoho.com'
+EMAIL_HOST_USER = env.str('EMAIL_USER')
+EMAIL_HOST_PASSWORD = env.str('EMAIL_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
