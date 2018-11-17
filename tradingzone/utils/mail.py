@@ -63,9 +63,9 @@ def send_formatted_sale_email(sale):
     from_email = "hello@agritradingzone.com"
     to = ['abd.traore@agritradingzone.com', 'fbilesanmi@gmail.com']
     text_content = "New bid from a user"
-    html_content = '<h1>You have received a product sale from ' + sale.seller.get_full_name + '.</h1>' \
+    html_content = '<h1>You have received a product sale from ' + sale.seller.first_name + '.</h1>' \
                    '<p>The information are as follows:</p>' \
-                   '<p>User:' + sale.seller.get_full_name + '</p>' \
+                   '<p>User:' + sale.seller.first_name + '</p>' \
                    '<p>Product:' + sale.crop + '</p>' \
                    '<p>User:' + sale.price + '</p>' \
                    '<p>Follow <a href=\'https://agritradingzone.herokuapp.com/products/sales/' \

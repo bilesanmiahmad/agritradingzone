@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from accounts.models import User
+from trades import models as mt
 from accounts import constants as ct
 from tradingzone.utils import mail
 
@@ -81,3 +83,12 @@ def logout(request):
     else:
         auth.logout(request)
         return redirect('home')
+
+
+@login_required()
+def profile(request):
+    user = request.user
+    bids = mt.Bid.objects.filter(client=user)
+    sales = mt.Sale.objects.filter(seller=user)
+
+
