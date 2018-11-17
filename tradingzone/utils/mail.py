@@ -20,8 +20,8 @@ def send_formatted_email(user):
     text_content = "Thank you for joining us at Agri Trading Zone"
     html_content = '<h1>Thank you for joining us at Agri Trading Zone</h1>' \
                    '<p> It\'s a pleasure to have you on board.</p> ' \
-                   '<p>Follow <a href=\'https:agritradingzone.herokuapp.com/accounts/' \
-                   + user.id + '/verify/\'>this</a> to verify your account.</p>'
+                   '<p>Follow <a href=\'https://agritradingzone.herokuapp.com/accounts/' \
+                   + str(user.id) + '/verify/\'>this</a> to verify your account.</p>'
     msg = EmailMultiAlternatives(subject, text_content, from_email, to)
     msg.attach_alternative(html_content, 'text/html')
     msg.send()
@@ -37,8 +37,8 @@ def send_formatted_bid_email(bid):
                    '<p>User:' + bid.client.full_name + '</p>' \
                    '<p>Product:' + bid.product.crop.name + '</p>' \
                    '<p>User:' + bid.price + '</p>' \
-                   '<p>Follow <a href=\'https:agritradingzone.herokuapp.com/products/bids/' \
-                   + bid.id + '\'>this</a> to verify your account.</p>'
+                   '<p>Follow <a href=\'https://agritradingzone.herokuapp.com/products/bids/' \
+                   + str(bid.id) + '\'>this</a> to verify your account.</p>'
     msg = EmailMultiAlternatives(subject, text_content, from_email, to)
     msg.attach_alternative(html_content, 'text/html')
     msg.send()

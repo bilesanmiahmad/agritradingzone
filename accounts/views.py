@@ -20,7 +20,7 @@ def login(request):
                 return render(
                     request,
                     'accounts/login.html',
-                    {'error': 'Please verify your account'})
+                    {'error': 'Please verify your account from your email.'})
         else:
             return render(
                 request, 'accounts/login.html',
@@ -64,8 +64,8 @@ def signup(request):
                     password=password
                 )
                 auth.login(request, user)
-                mail.send_formatted_email()
-                return redirect('products')
+                mail.send_formatted_email(user)
+                return redirect('login')
         else:
             return render(request, 'accounts/signup.html', {'error': 'Passwords don\'t match.'})
     else:
