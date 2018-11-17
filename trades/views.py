@@ -129,7 +129,7 @@ def add_sale(request):
             sale.details = request.POST['details']
             sale.price = request.POST['price']
             sale.save()
-            mail.send_email(sale)
+            mail.send_formatted_sale_email(sale)
             mail.send_formatted_user_sale_email(sale)
             return redirect('sales')
     else:
