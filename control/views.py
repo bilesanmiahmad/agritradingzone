@@ -91,6 +91,7 @@ def add_product(request):
         return render(request, 'control/add-product.html', {'crops': crops})
 
 
+@login_required()
 def details(request, product_id):
     product = get_object_or_404(mt.Product, pk=product_id)
     return render(request, 'control/product-detail.html', {'product': product})

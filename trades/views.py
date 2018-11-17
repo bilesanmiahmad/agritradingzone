@@ -50,6 +50,7 @@ def add_bid(request, product_id=None):
             bid.price = request.POST['price']
             bid.save()
             mail.send_formatted_bid_email(bid)
+            mail.send_formatted_user_bid_email(bid)
             return redirect('products')
     else:
         return render(
@@ -63,6 +64,7 @@ def add_bid(request, product_id=None):
         )
 
 
+@login_required()
 def get_bids(request):
     user = request.user
     if user.is_rahman:
@@ -71,26 +73,35 @@ def get_bids(request):
     return render(request, 'trades/bids.html', {'bids': bids})
 
 
+@login_required()
 def get_bid(request, bid_id):
-    bid = mt.Bid.objects.get(id=bid_id)
+    user = request.user
+    try:
+        bid = mt.Bid.objects.get(id=bid_id, client=user)
+    except ValueError:
+        return redirect('bids')
     return render(request, 'trades/bid.html', {'bid': bid})
 
 
+@login_required()
 def accept_bid(request, bid_id):
     if request.user.is_rahman:
         bid = mt.Bid.objects.get(id=bid_id)
         bid.is_accepted = True
         bid.save()
+        mail.send_formatted_user_bid_accepted_email(bid)
         return redirect('all-bids')
     else:
         return redirect('products')
 
 
+@login_required()
 def deny_bid(request, bid_id):
     if request.user.is_rahman:
         bid = mt.Bid.objects.get(id=bid_id)
         bid.is_accepted = False
         bid.save()
+        mail.send_formatted_user_bid_rejected_email(bid)
         return redirect('all-bids')
     else:
         return redirect('products')
@@ -118,7 +129,8 @@ def add_sale(request):
             sale.details = request.POST['details']
             sale.price = request.POST['price']
             sale.save()
-            mail.send_email()
+            mail.send_email(sale)
+            mail.send_formatted_user_sale_email(sale)
             return redirect('sales')
     else:
         return render(
