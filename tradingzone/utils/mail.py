@@ -19,7 +19,7 @@ def send_formatted_email(user):
     to = [user.email, 'fbilesanmi@gmail.com']
     text_content = "Thank you for joining us at Agri Trading Zone"
     html_content = '<h1>Thank you for joining us at Agri Trading Zone</h1>' \
-                   '<p> It\'s a pleasure to have you on board' + user.first_name + '.</p> ' \
+                   '<p> It\'s a pleasure to have you on board, ' + user.first_name + '.</p> ' \
                    '<p>Follow <a href=\'https://agritradingzone.herokuapp.com/accounts/' \
                    + str(user.id) + '/verify/\'>this</a> to verify your account.</p>'
     msg = EmailMultiAlternatives(subject, text_content, from_email, to)
