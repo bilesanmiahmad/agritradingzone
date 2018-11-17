@@ -33,6 +33,7 @@ def verify(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     if user:
         user.is_verified = True
+        user.save()
         return redirect('login')
 
 
