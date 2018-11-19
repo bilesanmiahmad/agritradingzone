@@ -34,9 +34,9 @@ def send_formatted_bid_email(bid):
     text_content = "New bid from a user"
     html_content = '<h1>You have received a new bid</h1>' \
                    '<p>The information are as follows:</p>' \
-                   '<p>User:' + bid.client.get_full_name + '</p>' \
-                   '<p>Product:' + bid.product.crop.name + '</p>' \
-                   '<p>Bid Price:' + bid.price + '</p>' \
+                   '<p>User: ' + bid.client.get_full_name + '</p>' \
+                   '<p>Product: ' + bid.product.crop.name + '</p>' \
+                   '<p>Bid Price: ' + bid.price + '</p>' \
                    '<p>Follow <a href=\'https://agritradingzone.herokuapp.com/products/bids/' \
                    + str(bid.id) + '\'>this</a> to view full details.</p>'
     msg = EmailMultiAlternatives(subject, text_content, from_email, to)
@@ -65,9 +65,9 @@ def send_formatted_sale_email(sale):
     text_content = "New bid from a user"
     html_content = '<h1>You have received a product sale from ' + sale.seller.first_name + '.</h1>' \
                    '<p>The information are as follows:</p>' \
-                   '<p>User:' + sale.seller.first_name + '</p>' \
-                   '<p>Product:' + sale.crop + '</p>' \
-                   '<p>User:' + sale.price + '</p>' \
+                   '<p>User: ' + sale.seller.first_name + '</p>' \
+                   '<p>Product: ' + sale.crop + '</p>' \
+                   '<p>Price: ' + sale.price + '</p>' \
                    '<p>Follow <a href=\'https://agritradingzone.herokuapp.com/products/sales/' \
                    + str(sale.id) + '\'>this</a> to view full details.</p>'
     msg = EmailMultiAlternatives(subject, text_content, from_email, to)

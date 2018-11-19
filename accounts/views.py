@@ -66,6 +66,9 @@ def signup(request):
                     country=country,
                     password=password
                 )
+                profile_data = mt.Profile()
+                profile_data.user = user
+                profile_data.save()
                 auth.login(request, user)
                 mail.send_formatted_email(user)
                 return redirect('login')
@@ -73,7 +76,7 @@ def signup(request):
             return render(request, 'accounts/signup.html', {'error': 'Passwords don\'t match.'})
     else:
 
-        return render(request, 'accounts/signup.html', {'countries': countries})
+        return render(request, 'accounts/signup.html', {'countries': countries, 'language': request.LANGUAGE_CODE})
 
 
 def logout(request):
@@ -90,5 +93,13 @@ def profile(request):
     user = request.user
     bids = mt.Bid.objects.filter(client=user)
     sales = mt.Sale.objects.filter(seller=user)
+    try:
+        profile_data = mt.Profile.get(user=user)
+    except mt.Profile.DoesNotExist:
+        profile_data = {}
+
+    return render(request, 'accounts/profile.html', {
+        'user': user, 'bids': len(bids),
+        'sales': len(sales), 'profile': profile_data})
 
 
