@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from accounts.models import User
 from trades import models as mt
-from accounts import constants as ct
+from accounts import utils as ut
 from tradingzone.utils import mail
 
 # Create your views here.
@@ -40,7 +40,7 @@ def verify(request, user_id):
 
 
 def signup(request):
-    countries = ct.COUNTRIES
+    countries = ut.get_countries()
     if request.method == 'POST':
         fname = request.POST['fname']
         lname = request.POST['lname']
@@ -75,7 +75,6 @@ def signup(request):
         else:
             return render(request, 'accounts/signup.html', {'error': 'Passwords don\'t match.'})
     else:
-
         return render(request, 'accounts/signup.html', {'countries': countries, 'language': request.LANGUAGE_CODE})
 
 

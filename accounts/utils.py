@@ -1,3 +1,4 @@
+import csv
 from django.core.mail import EmailMessage
 
 
@@ -11,3 +12,14 @@ def send_email():
             headers={'Content-Type': 'text/plain'},
         )
     email.send()
+
+
+def get_countries():
+    country_list = []
+    with open('country.csv', 'r') as country_csv:
+        reader = csv.DictReader(country_csv)
+        for row in reader:
+            country = [row['3Code'], row['Country']]
+            country_list.append(country)
+
+    return country_list
