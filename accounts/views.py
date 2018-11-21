@@ -102,3 +102,32 @@ def profile(request):
         'sales': len(sales), 'profile': profile_data})
 
 
+def send_password_link(request, email):
+    if request.POST['email']:
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            user = None
+
+        if user:
+            mail.send_password_change_link_email(user)
+        return redirect('home')
+
+    return render(request, 'accounts/login.html')
+
+
+def change_password(request, user_id, password_token):
+    if (request.POST['password'] and request.POST['confirm']
+        and request.POST['password'] == request.POST['confirm']):
+        try:
+            user = User.objects.get(id=user_id, password_token=password_token)
+        except User.DoesNotExist:
+            user = None
+            return redirect('home')
+
+        if user:
+            user.set_password()
+        return redirect('login')
+
+
+

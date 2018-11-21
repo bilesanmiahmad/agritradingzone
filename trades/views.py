@@ -7,7 +7,7 @@ from tradingzone.utils import mail
 
 # Create your views here.
 
-
+@login_required()
 def list_products(request):
     products = mt.Product.objects.filter(is_closed=False)
     return render(
@@ -27,7 +27,7 @@ def add_product(request):
             'trades/products.html',
             context={'product': products})
 
-
+@login_required()
 def close_product(request, product_id=None):
     if request.user.is_rahman:
         product = mt.Product.objects.get(id=product_id)
@@ -159,4 +159,4 @@ def all_sales(request):
         sales = mt.Sale.objects.all()
         return render(request, 'trades/sales.html', {'sales': sales})
     else:
-        redirect('products')
+        return redirect('products')

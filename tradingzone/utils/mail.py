@@ -114,3 +114,33 @@ def send_formatted_user_bid_rejected_email(bid):
     msg = EmailMultiAlternatives(subject, text_content, from_email, to)
     msg.attach_alternative(html_content, 'text/html')
     msg.send()
+
+
+def send_password_change_link_email(user):
+    subject = "You requested to change your password."
+    from_email = "hello@agritradingzone.com"
+    to = [user.email, 'fbilesanmi@gmail.com']
+    text_content = "You requested to change your password."
+    html_content = '<p>Hello, ' + user.first_name + ', </p>' \
+                   '<p>We got a request from you or someone using your account ' \
+                   'to change your password.</p>' \
+                   '<p>If this is you, please follow the link to change it.</p>' \
+                   '<p>If you did not make this request, please kindly ignore this email.</p>' \
+                   '<p>Thank you for using Agri Trading Zone.</p>'
+    msg = EmailMultiAlternatives(subject, text_content, from_email, to)
+    msg.attach_alternative(html_content, 'text/html')
+    msg.send()
+
+
+def send_password_changed_email(user):
+    subject = "Your password has been changed."
+    from_email = "hello@agritradingzone.com"
+    to = [user.email, 'fbilesanmi@gmail.com']
+    text_content = "Your password has been changed."
+    html_content = '<p>Hello, ' + user.first_name + ', </p>' \
+                   '<p>Your password has been changed. ' \
+                   '<p>Feel free to login and check out our amazing new products.</p>' \
+                   '<p>Thank you for using Agri Trading Zone.</p>'
+    msg = EmailMultiAlternatives(subject, text_content, from_email, to)
+    msg.attach_alternative(html_content, 'text/html')
+    msg.send()

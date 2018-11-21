@@ -18,5 +18,6 @@ urlpatterns = [
     path('<int:product_id>/bid', views.add_bid, name='make-bid'),
     path('sales/', views.get_sales, name='sales'),
     path('sales/add', views.add_sale, name='add-sale'),
-    path('sales/<int:sale_id>', views.get_sale, name='sale-item')
+    path('sales/<int:sale_id>', views.get_sale, name='sale-item'),
+    path('all-sales/', views.all_sales, name='all-sales'),
 ]
