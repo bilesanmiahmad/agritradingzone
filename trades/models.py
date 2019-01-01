@@ -106,6 +106,29 @@ class Bid(models.Model):
         _('is accepted'),
         default=False
     )
+    accepted_time = models.DateTimeField(
+        _('accepted time'),
+        blank=True,
+        null=True
+    )
+    is_invoiced = models.BooleanField(
+        _('is invoiced'),
+        default=False
+    )
+    invoiced_time = models.DateTimeField(
+        _('invoiced time'),
+        blank=True,
+        null=True
+    )
+    is_agreed = models.BooleanField(
+        _('is agreed'),
+        default=False
+    )
+    agreed_time = models.DateTimeField(
+        _('agreed time'),
+        blank=True,
+        null=True
+    )
     created = models.DateTimeField(
         _('created'),
         auto_now_add=True
@@ -210,3 +233,20 @@ class Sale(models.Model):
     )
 
 
+class Invoice(models.Model):
+    bid = models.ForeignKey(
+        Bid,
+        on_delete=models.CASCADE,
+        related_name='invoice_bids'
+    )
+
+    client = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='invoices'
+    )
+
+    created = models.DateTimeField(
+        _('Date created'),
+        auto_now_add=True
+    )

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title%}Agri Trading Zone -- Deals{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+{% load humanize %}
+
+<h2 class="text-center">Your Deals</h2>
+
+<ul>
+{% if invoices %}
+    <div class="row my-5">
+{% for invoice in invoices %}
+
+    <div class="card m-3" style="width: 18rem;">
+        <!--<img class="card-img-top" src="{{ product.image.url }}" height="180px" width="180px" alt="product image">-->
+        <div class="card-body">
+            <h5 class="card-title">Crop : {{ invoice.bid.product.crop }}</h5>
+            <p class="card-text">Package : {{ invoice.bid.package }}</p>
+            <p class="card-text">Weight : {{ invoice.bid.weight }}</p>
+            <p class="card-text">Your Bid Price : {{ invoice.bid.price }}</p>
+            <p class="card-text">Date : {{ invoice.created | naturalday }}</p>
+            <a href="{% url 'invoice' invoice.id %}" class="btn btn-primary">See Details</a>
+        </div>
+    </div>
+    {% endfor %}
+        </div>
+    {% else %}
+        {% if request.user.is_rahman %}
+            <div class="alert alert-danger" role="alert">
+                    No invoice has been generated yet. An invoice is created when a user agrees to an accepted bid. You can accept bids <a href="{% url 'bids' %}">here</a>.
+            </div>
+        {% else %}
+
+            <div class="alert alert-danger" role="alert">
+                    You do not have any invoices yet. You can start by finding a product <a href="{% url 'products' %}">here</a>.
+            </div>
+        {% endif %}
+    {%endif%}
+</ul>
+
+
+{% endblock %}

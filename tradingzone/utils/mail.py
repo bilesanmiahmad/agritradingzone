@@ -28,13 +28,14 @@ def send_formatted_email(user):
 
 
 def send_formatted_bid_email(bid):
+    print(str(bid.id))
     subject = "You have received a bid from a user"
     from_email = "hello@agritradingzone.com"
     to = ['abd.traore@agritradingzone.com', 'fbilesanmi@gmail.com']
     text_content = "New bid from a user"
     html_content = '<h1>You have received a new bid</h1>' \
                    '<p>The information are as follows:</p>' \
-                   '<p>User: ' + bid.client.get_full_name + '</p>' \
+                   '<p>User: ' + bid.client.get_full_name() + '</p>' \
                    '<p>Product: ' + bid.product.crop.name + '</p>' \
                    '<p>Bid Price: ' + bid.price + '</p>' \
                    '<p>Follow <a href=\'https://agritradingzone.herokuapp.com/products/bids/' \
@@ -45,7 +46,7 @@ def send_formatted_bid_email(bid):
 
 
 def send_formatted_user_bid_email(bid):
-    subject = "Your have received a bid from a user"
+    subject = "Your bid has been received."
     from_email = "hello@agritradingzone.com"
     to = [bid.client.email, 'fbilesanmi@gmail.com']
     text_content = "Your bid has been received"
@@ -140,6 +141,23 @@ def send_password_changed_email(user):
     html_content = '<p>Hello, ' + user.first_name + ', </p>' \
                    '<p>Your password has been changed. ' \
                    '<p>Feel free to login and check out our amazing new products.</p>' \
+                   '<p>Thank you for using Agri Trading Zone.</p>'
+    msg = EmailMultiAlternatives(subject, text_content, from_email, to)
+    msg.attach_alternative(html_content, 'text/html')
+    msg.send()
+
+
+def send_invoice_email(invoice):
+    subject = "Your invoice has been created."
+    from_email = "hello@agritradingzone.com"
+    to = [invoice.client.email, 'fbilesanmi@gmail.com']
+    text_content = "Your invoice has been created."
+    html_content = '<p>Hello, ' + invoice.client.first_name + ', </p>' \
+                   '<p>Upon agreeing to the accepted bid, an invoice for the product ' \
+                   'has been generated for you.</p> ' \
+                   '<p>Feel free to login and review your invoice ' \
+                   '<a href=\'https://agritradingzone.herokuapp.com/products/invoices/' \
+                   + str(invoice.id) + '/\'>here.</a>' \
                    '<p>Thank you for using Agri Trading Zone.</p>'
     msg = EmailMultiAlternatives(subject, text_content, from_email, to)
     msg.attach_alternative(html_content, 'text/html')

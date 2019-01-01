@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title%}Agri Trading Zone -- Bids{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+{% load humanize %}
+
+    <h2>Invoice</h2>
+    {% if invoice %}
+    <div class="container">
+        <h2>Summary of Deal</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Product</strong></p>
+            </div>
+            <div class="col-md-6">
+                <p>{{ invoice.bid.product.crop }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Details</strong></p>
+            </div>
+            <div class="col-md-6">
+                <p>{{invoice.bid.product.details}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Quantity</strong></p>
+            </div>
+            <div class="col-md-6">
+                <p>{{invoice.bid.product.quantity}} <span>{{invoice.bid.product.metric}}</span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Price</strong></p>
+            </div>
+            <div class="col-md-6">
+                <p>${{invoice.bid.product.price}} ---> ${{ invoice.bid.price}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Delivery Package</strong></p>
+            </div>
+            <div class="col-md-6">
+                <p>{{invoice.bid.package}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Size of package</strong></p>
+            </div>
+            <div class="col-md-6">
+                <p>{{invoice.bid.weight}} <span>{{invoice.bid.product.metric}}</span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong></strong></p>
+            </div>
+            <div class="col-md-6">
+                <p></p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}

@@ -25,6 +25,16 @@
                 <span><a href="{% url 'deny-bid' bid.id %}" class="btn btn-danger">Deny Bid</a></span>
                 </div>
             {% endif %}
+            
+            {% if not request.user.is_rahman and bid.is_accepted and not bid.is_agreed %}
+                <div>
+                    <span><a href="{% url 'agree-bid' bid.id %}" class="btn btn-success">Agree to Accepted Bid</a></span>
+                </div>
+            {% elif not request.user.is_rahman and bid.is_accepted and bid.is_agreed %}
+                <div>
+                    <span><a href="{% url 'agree-bid' bid.id %}" class="btn btn-success">Agree to Accepted Bid</a></span>
+                </div>
+            {% endif %}
         </div>
     </div>
         </div>

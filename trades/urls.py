@@ -13,6 +13,7 @@ urlpatterns = [
     path('bids/', views.get_bids, name='bids'),
     path('all-bids/', views.all_bids, name='all-bids'),
     path('bids/<int:bid_id>/accept/', views.accept_bid, name='accept-bid'),
+    path('bids/<int:bid_id>/agree/', views.agree_to_bid, name='agree-bid'),
     path('bids/<int:bid_id>/deny/', views.deny_bid, name='deny-bid'),
     path('bids/<int:bid_id>', views.get_bid, name='bid'),
     path('<int:product_id>/bid', views.add_bid, name='make-bid'),
@@ -20,4 +21,7 @@ urlpatterns = [
     path('sales/add', views.add_sale, name='add-sale'),
     path('sales/<int:sale_id>', views.get_sale, name='sale-item'),
     path('all-sales/', views.all_sales, name='all-sales'),
+    path('invoices/', views.get_invoices, name='invoices'),
+    path('invoices/<int:invoice_id>', views.get_invoice, name='invoice'),
+    path('all-invoices/', views.all_invoices, name='all-invoices'),
 ]
