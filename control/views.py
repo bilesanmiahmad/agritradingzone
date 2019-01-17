@@ -61,12 +61,16 @@ def add_product(request):
     crops = mt.Crop.objects.all()
     if request.method == 'POST':
         if (request.POST['crop'] and request.POST['qty']
+            and request.POST['type']
+            and request.POST['method']
             and request.POST['details']
             and request.POST['price']
             and request.POST['metric']):
             crop = mt.Crop.objects.get(id=int(request.POST['crop']))
             product = mt.Product()
             product.crop = crop
+            product.prod_type = request.POST['type']
+            product.method = request.POST['method']
             product.quantity = int(request.POST['qty'])
             product.image = request.FILES['img']
             if request.POST['proddate'] == '' and request.POST['expdate'] == '':

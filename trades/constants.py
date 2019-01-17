@@ -18,6 +18,12 @@ CMR = 'CMR'
 QUALITY_CERTIFICATE = 'QC'
 EXPORT_DECLARATION = 'ED'
 
+ORIGIN = 'ORIGIN'
+SPOT = 'SPOT'
+
+ORG = 'ORG'
+CONV = 'CONV'
+
 
 METRIC = (
     (KILOS, 'Kilogram'),
@@ -41,4 +47,14 @@ DOCUMENTS = (
     (CMR, 'CMR'),
     (QUALITY_CERTIFICATE, 'QUALITY CERTIFICATE'),
     (EXPORT_DECLARATION, 'EXPORT DECLARATION')
+)
+
+CROP_TYPE = (
+    (ORG, 'Organic'),
+    (CONV, 'Conventional')
+)
+
+TRANSPORT_METHOD = (
+    (ORIGIN, 'Origin'),
+    (SPOT, 'Spot')
 )

@@ -23,6 +23,18 @@ class Product(models.Model):
         on_delete=models.CASCADE,
         related_name='products'
     )
+    prod_type = models.CharField(
+        _('product type'),
+        max_length=10,
+        choices=c.CROP_TYPE,
+        default=c.ORG
+    )
+    method = models.CharField(
+        _('transport method'),
+        max_length=10,
+        choices=c.TRANSPORT_METHOD,
+        default=c.SPOT
+    )
     quantity = models.DecimalField(
         _('quantity'),
         max_digits=10,

@@ -16,9 +16,23 @@
             {% endif %}
             <p><h1>Product Detail</h1></p>
             {% if product %}
-                <p>{{ product.crop }}</p>
-                <p>{{ product.details }}</p>
-                <p>{{ product.created | naturalday }}</p>
+                <p><strong>Crop:</strong>  {{ product.crop }}</p>
+                <p><strong>Crop Type:</strong>
+                    {% if product.prod_type == "ORG" %}
+                        <span>Organic</span>
+                    {% else %}
+                        <span>Conventional</span>
+                    {% endif %}
+                </p>
+                <p><strong>Transport method:</strong>
+                    {% if product.method == "ORIGIN" %}
+                        <span>Origin</span>
+                    {% else %}
+                        <span>Spot</span>
+                    {% endif %}
+                </p>
+                <p><strong>Other details:</strong>  {{ product.details }}</p>
+                <p><strong>Uploaded on:</strong>  {{ product.created | naturalday }}</p>
                 <p><img src="{{ product.image.url }}" alt="product image" width="270px"></p>
             <a href="{% url 'make-bid' product.id %}"><button class="btn btn-success">Bid on Product</button></a>
             {% if request.user.is_rahman %}

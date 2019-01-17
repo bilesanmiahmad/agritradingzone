@@ -26,6 +26,14 @@
                 {% endfor %}
             </select>
                 <br>
+                <select type="text" name="type" id="type" placeholder="Product Type" class="form-control" required>
+                    <option value="ORG">Organic</option>
+                    <option value="CONV">Conventional</option>
+                </select>
+            <select type="text" name="method" id="method" placeholder="Transport Method" class="form-control" required>
+                    <option value="ORIGIN">Origin</option>
+                    <option value="SPOT">Spot</option>
+                </select>
             <input type="number" name="qty" id="qty" placeholder="Quantity" class="form-control" required>
                 <br>
             <input type="file" name="img" id="img" placeholder="Image" class="form-control">
