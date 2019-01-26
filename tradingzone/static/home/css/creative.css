@@ -25,13 +25,13 @@ hr.light {
 }
 
 a {
-  color: #F05F40;
+  color: #13a13b;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
 a:hover {
-  color: #f05f40;
+  color: #13a13b;
 }
 
 h1,
@@ -305,8 +305,8 @@ header.masthead p {
 }
 
 .btn-primary {
-  background-color: #F05F40;
-  border-color: #F05F40;
+  background-color: #13a13b;
+  border-color: #13a13b;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
