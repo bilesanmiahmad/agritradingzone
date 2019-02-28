@@ -1,0 +1,134 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-19 08:52+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: home/templates/home/index.html:56
+msgid "Sign Up"
+msgstr ""
+
+#: home/templates/home/index.html:59
+msgid "Login"
+msgstr ""
+
+#: home/templates/home/index.html:72
+msgid "You can get cash grains and nuts at the click of a button."
+msgstr ""
+
+#: home/templates/home/index.html:77
+msgid ""
+"At AgriTradingZone, you can find the best cash crops at the best prices and "
+"quality because we also want you to make the best profits in your business"
+msgstr ""
+
+#: home/templates/home/index.html:78
+msgid "Get Started"
+msgstr ""
+
+#: home/templates/home/index.html:88
+msgid "We've got what you need!"
+msgstr ""
+
+#: home/templates/home/index.html:90
+msgid ""
+"From nuts to grains and other cash crops, you name it, we can get it for "
+"you. We can also help you market your goods if you are a seller. We are here "
+"for you."
+msgstr ""
+
+#: home/templates/home/index.html:91
+msgid "Get Started!"
+msgstr ""
+
+#: home/templates/home/index.html:101
+msgid "At Your Service"
+msgstr ""
+
+#: home/templates/home/index.html:111
+msgid "Easy To Use"
+msgstr ""
+
+#: home/templates/home/index.html:112
+msgid ""
+"Our platform is easy to use so you can get maximum results in little time."
+msgstr ""
+
+#: home/templates/home/index.html:118
+msgid "Commitment"
+msgstr ""
+
+#: home/templates/home/index.html:119
+msgid ""
+"We take our clients seriously and we follow up on your requests with full "
+"commitment"
+msgstr ""
+
+#: home/templates/home/index.html:125
+msgid "Up to Date"
+msgstr ""
+
+#: home/templates/home/index.html:126
+msgid ""
+"Our products list are always updated to keep you informed of our latest "
+"products."
+msgstr ""
+
+#: home/templates/home/index.html:132
+msgid "Market Your Goods"
+msgstr ""
+
+#: home/templates/home/index.html:133
+msgid "You can reach out to us to market your goods for you."
+msgstr ""
+
+#: home/templates/home/index.html:147
+msgid "Sesame Seeds"
+msgstr ""
+
+#: home/templates/home/index.html:156
+msgid "Peanuts"
+msgstr ""
+
+#: home/templates/home/index.html:165
+msgid "Arabic Gum"
+msgstr ""
+
+#: home/templates/home/index.html:173
+msgid "Cashew nuts"
+msgstr ""
+
+#: home/templates/home/index.html:182
+msgid "Pure Honey"
+msgstr ""
+
+#: home/templates/home/index.html:191
+msgid "Sorghum Seeds"
+msgstr ""
+
+#: home/templates/home/index.html:200
+msgid "Baobab Seeds"
+msgstr ""
+
+#: home/templates/home/index.html:211
+msgid "Let's Get In Touch!"
+msgstr ""
+
+#: home/templates/home/index.html:213
+msgid ""
+"Ready to business with us? That's great! Give us a call or send us an email "
+"and we will get back to you as soon as possible!"
+msgstr ""
